@@ -27,7 +27,7 @@ Any feedback is welcome and I am super excited to what we can build with this.
 
 
 ## Example Usage:
-	⚠️ Not all properties and functions have been documented! 
+⚠️ Not all properties and functions have been documented! 
 
 You can access the global variable called `Nokama` anywhere in ct.js. This is the class which provides you with all the functionality of Nokama.
 
@@ -62,6 +62,7 @@ Nakama.connectedOpponents.forEach((opponent) => {
 ## Useful Links
 
 https://github.com/heroiclabs/nakama-js
+
 https://heroiclabs.com/docs/
 
 ## Getting Help
