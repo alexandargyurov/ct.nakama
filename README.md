@@ -1,5 +1,5 @@
 
-# Nakama in ct.js!
+# Multiplayer in ct.js!
 This is a catmod to enable the use of the [Nakama JS Client library](https://heroiclabs.com/docs/javascript-client-guide/) into the [ct.js game engine](https://ctjs.rocks/). You can now build a fully scalable multiplayer game all with the amazing tools ct.js provides!
 
 Nakama makes it possible to create virtually any type of multiplayer experience you desire. Here are some of its features:
