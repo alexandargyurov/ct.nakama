@@ -21,7 +21,7 @@ Any feedback is welcome and I am super excited to what we can build with this.
 ## Getting Started:
 
  1. You'll need a [local instance of a Nakama server](https://heroiclabs.com/docs/nakama-download/) before you begin.
-2. Download the latest release of this catmod.
+2. Download the [latest release](https://github.com/alexandargyurov/ct.nakama/releases) of this catmod.
 3. Import the module into ct.js in the `Catmods` section.
 4. You should be all set! 🚀
 
