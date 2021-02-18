@@ -29,7 +29,7 @@ Any feedback is welcome and I am super excited to what we can build with this.
 ## Example Usage:
 ⚠️ Not all properties and functions have been documented! 
 
-You can access the global variable called `Nokama` anywhere in ct.js. This is the class which provides you with all the functionality of Nokama.
+You can access the global variable called `Nakama` anywhere in ct.js. This is the class which provides you with all the functionality of Nakama.
 
 |Property|Description|
 |--|--|
