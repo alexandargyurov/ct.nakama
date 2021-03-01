@@ -12,6 +12,12 @@ Nakama makes it possible to create virtually any type of multiplayer experience 
  - Realtime, room-based, persisted chat channels
  - [And a lot more!](https://heroiclabs.com/)
 
+
+## Video Tutorial Series!
+[![image](https://user-images.githubusercontent.com/10382821/109438818-7af12480-7a23-11eb-8752-f67d6c42a44c.png)](https://www.youtube.com/watch?v=Glo9t3TV1vg&list=PLOoNs4RDYDKDtF5LO-LwuJiRD6m81rI8e
+)
+(image will take you to YouTube once clicked)
+
 ## Notice:
 This catmod is still in the very early stages of development.  **It is not production ready!** I plan to create documentation, examples and a tutorial series to go through how to use this library all in the near future once the codebase gets stable.
 
