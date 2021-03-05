@@ -49,10 +49,10 @@ console.log("Created match with ID:", response.match.match_id);
 From https://heroiclabs.com/docs/gameplay-multiplayer-realtime/#join-a-match
 ```
 let id = "<matchid>";
-Nakama.currentMatch = await Nakama.socket.joinMatch(id);
-Nakama.connectedOpponents = match.presences
+let match = await Nakama.socket.joinMatch(id);
+Nakama.state.players = match.presences
 
-Nakama.connectedOpponents.forEach((opponent) => {
+Nakama.state.players.forEach((opponent) => {
   console.log("User id %o, username %o.", opponent.user_id, opponent.username);
 });
 ```
