@@ -12,6 +12,8 @@ export default class {
     }
 
     static warn(msg) {
-        console.warn(msg);
+        if ([/*%debugMode%*/][0]) {
+            console.log(`%s ${msg}`, '⚠️');
+        }
     }
 }
