@@ -11,9 +11,7 @@ export default class Nakama {
         this.session;
         this.socket;
 
-        this.state = {
-            presences: {}
-        }
+        this.state = {}
     }
 
     initiate = async () => {
@@ -63,9 +61,9 @@ export default class Nakama {
 
         const newUserId = uuidv4();
 
-        let nakamaAuthToken = await this.client.authenticateCustom(newUserId, true, newUserId);
-        localStorage.setItem("nakamaAuthToken", nakamaAuthToken.token);
-        this.session = nakamaAuthToken
+        let nakamaSession = await this.client.authenticateCustom(newUserId, true, newUserId);
+        localStorage.setItem("nakamaAuthToken", nakamaSession.token);
+        this.session = nakamaSession
 
         return this.session
     }
