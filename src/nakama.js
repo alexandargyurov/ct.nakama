@@ -1,9 +1,9 @@
-import { Client } from "@heroiclabs/nakama-js";
+import { Client, Session } from "@heroiclabs/nakama-js";
 import { v4 as uuidv4 } from "uuid";
 
 import Logger from "./logger"
 
-class Nakama {
+export default class Nakama {
     constructor(clientHost, clientPort, useSSL) {
         this.useSSL = useSSL;
         this.client = new Client("defaultkey", clientHost, clientPort, this.useSSL);
@@ -11,51 +11,39 @@ class Nakama {
         this.session;
         this.socket;
 
-        this.currentMatch;
-        this.connectedOpponents = [];
+        this.state = {
+            presences: {}
+        }
     }
 
     initiate = async () => {
-        Logger.log("ct.nakama has loaded!", "✨");
-
         await this.checkSessionAndAuthenticate()
         await this.establishSocketConnection()
-        // await this.joinMatch("1dbae998-b50a-4d87-a991-0c7004a290f3.nakama1")  // TODO: REMOVE ME FOR TESTING ONLY
-    }
 
-    appendToConnectedOpponents = (newlyConnectedOpponents) => {
-        this.connectedOpponents = this.connectedOpponents.concat(newlyConnectedOpponents);
-        Logger.log("connectedOpponents updated with newly joined opponents");
-    }
-
-    removeFromConnectedOpponents = (newlyLeftOpponents) => {
-        this.connectedOpponents = this.connectedOpponents.filter(function (co) {
-            let stillConnectedOpponent = true;
-            newlyLeftOpponents.forEach((leftOpponent) => {
-                if (leftOpponent.user_id == co.user_id) {
-                    stillConnectedOpponent = false;
-                }
-            });
-            return stillConnectedOpponent;
-        });
-
-        Logger.log("connectedOpponents updated with newly left opponents");
+        Logger.log("ct.nakama has loaded!", "✨");
     }
 
     checkSessionAndAuthenticate = async () => {
         // Checks browser for session and authenticates with server
-        let existingUser = localStorage.getItem("browserSession");
-        if (existingUser) {
-            this.session = await this.client.authenticateCustom(
-                existingUser,
-                false,
-                existingUser
-            );
-        } else {
-            const newUser = uuidv4();
 
-            localStorage.setItem("browserSession", newUser);
-            this.session = await this.client.authenticateCustom(newUser, true, newUser);
+        let nakamaAuthToken = localStorage.getItem("nakamaAuthToken");
+
+        if (nakamaAuthToken && nakamaAuthToken != "") {
+            Logger.log("Session Found");
+
+            let session = Session.restore(nakamaAuthToken);
+            let currentTimeInSec = new Date() / 1000;
+
+            if (!session.isexpired(currentTimeInSec)) {
+                // Session valid so restore it
+                this.session = session
+                Logger.log("Session Restored");
+            } else {
+                Logger.log("Session Expired");
+                await this.createSession()
+            }
+        } else {
+            await this.createSession()
         }
 
         Logger.success("Authenticated Session");
@@ -63,28 +51,22 @@ class Nakama {
 
     establishSocketConnection = async () => {
         // Create connection to the server via websockets
-        const trace = false;
+        const trace = false; // TODO: understand what this does
         this.socket = this.client.createSocket(this.useSSL, trace);
         await this.socket.connect(this.session);
 
         Logger.success("Established Websocket Connection");
     };
 
-    createGame = async () => {
-        const newMatchID = await this.client.rpc(this.session, "create_match_rpc", {});
-        Logger.log("New Match Created: %o", newMatchID);
-    }
+    createSession = async () => {
+        Logger.log("Creating New Session");
 
-    joinMatch = async (matchID) => {
-        this.currentMatch = await this.socket.joinMatch(matchID);
+        const newUserId = uuidv4();
 
-        // for each person in the game add them to the connectedOpponents list
-        this.currentMatch.presences.forEach((opponent) => {
-            this.connectedOpponents = [opponent, ...this.connectedOpponents];
-        });
+        let nakamaAuthToken = await this.client.authenticateCustom(newUserId, true, newUserId);
+        localStorage.setItem("nakamaAuthToken", nakamaAuthToken.token);
+        this.session = nakamaAuthToken
 
-        Logger.success("Joined Match")
+        return this.session
     }
 }
-
-export default new Nakama("/*%clientHost%*/", "/*%clientPort%*/", [/*%useSSL%*/][0])
