@@ -13,8 +13,7 @@ Nakama makes it possible to create virtually any type of multiplayer experience 
  - [And a lot more!](https://heroiclabs.com/)
 
 ## Video Tutorial Series!
-[![image](https://user-images.githubusercontent.com/10382821/109438818-7af12480-7a23-11eb-8752-f67d6c42a44c.png)](https://www.youtube.com/watch?v=Glo9t3TV1vg&list=PLOoNs4RDYDKDtF5LO-LwuJiRD6m81rI8e
-)
+[![image](https://i.imgur.com/6e3D9yO.png)
 (image will take you to YouTube once clicked)
 
 ## Notice:
