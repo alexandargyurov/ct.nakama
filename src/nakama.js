@@ -4,9 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import Logger from "./logger"
 
 export default class Nakama {
-    constructor(clientHost, clientPort, useSSL) {
+    constructor(serverKey, clientHost, clientPort, useSSL) {
         this.useSSL = useSSL;
-        this.client = new Client("defaultkey", clientHost, clientPort, this.useSSL);
+        this.client = new Client(serverKey, clientHost, clientPort, this.useSSL);
 
         this.session;
         this.socket;

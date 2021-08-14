@@ -1,7 +1,7 @@
 {
   "name": "ct.nakama",
-  "version": "0.0.2",
-  "description": "",
+  "version": "2.3.0",
+  "description": "A nakama-js wrapper for ctjs",
   "main": "index.js",
   "scripts": {
     "zip": "npm-build-zip --source=. --destination=./dist/",
@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.12.13",
-    "@heroiclabs/nakama-js": "^2.1.4",
+    "@heroiclabs/nakama-js": "2.3.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

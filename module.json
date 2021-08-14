@@ -1,12 +1,16 @@
 {
     "main": {
         "name": "ct.nakama",
-        "tagline": "Implementation of heroiclabs/nakama to enable multiplayer games",
-        "version": "0.0.2",
+        "tagline": "A wrapper for nakama-js to enable multiplayer games",
+        "version": "2.3.0",
         "authors": [
             {
                 "name": "Alexandar Gyurov",
                 "mail": "hello@alexandar.me"
+            },
+            {
+                "name": "Ron Lievens",
+                "mail": "ron.lievens@gmail.com"
             }
         ],
         "categories": [
@@ -19,14 +23,21 @@
             "type": "h2"
         },
         {
+            "name": "Server Key",
+            "key": "serverKey",
+            "default": "defaultkey",
+            "type": "text"
+        },
+        {
             "name": "Host",
             "key": "clientHost",
             "default": "127.0.0.1",
-            "type": "code"
+            "type": "text"
         },
         {
             "name": "Port",
             "key": "clientPort",
+            "help": "",
             "default": 7350,
             "type": "number"
         },
